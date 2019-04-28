@@ -11,14 +11,22 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scrol_page);
 
-        Button next = (Button) findViewById(R.id.loginSubmit);
-        next.setOnClickListener(new View.OnClickListener(){
+        Button back = (Button) findViewById(R.id.loginSubmit);
+        back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();
             }
 
+        });
+
+        Button next = (Button) findViewById(R.id.button13);
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), ListActivity.class);
+                startActivityForResult(myIntent, 0);
+            }
         });
     }
 }

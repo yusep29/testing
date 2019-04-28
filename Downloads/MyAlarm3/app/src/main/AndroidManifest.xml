@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".SecondActivity"></activity>
         <activity android:name=".ThirdActivity"></activity>
+        <activity android:name=".ListActivity"></activity>
         
         <receiver android:name=".MyBroadcastReceiver"></receiver>
         <service  android:name=".RingtoneService"></service>
