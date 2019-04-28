@@ -7,5 +7,6 @@ import java.util.Map;
 public class Notes {
     public static Map<String,String> mapNotes = new HashMap<>();
     public static String selected = null;
+    public static String data = null;
 
 }
