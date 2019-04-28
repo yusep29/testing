@@ -13,6 +13,8 @@ import android.widget.ListView;
 import com.example.yusepmaulana07.myalarm3.model.Notes;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,6 +40,7 @@ public class NotesListActivity extends AppCompatActivity {
         if (!Notes.mapNotes.isEmpty()){
             Set<String> set = Notes.mapNotes.keySet();
             listItems =  new ArrayList<>(set);
+            Collections.sort(listItems);
         }
 
         ListView listView = (ListView) findViewById(R.id.listNotes);
@@ -54,11 +57,13 @@ public class NotesListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
-                            case DialogInterface.BUTTON_NEUTRAL:
-
+                            case DialogInterface.BUTTON_POSITIVE:
+                                Notes.selected = item;
+                                Intent myIntent = new Intent(view.getContext(), EditNoteActivity.class);
+                                startActivityForResult(myIntent, 0);
                                 break;
 
-                            case DialogInterface.BUTTON_NEGATIVE:
+                            case DialogInterface.BUTTON_NEUTRAL:
                                 view.animate().setDuration(2000).alpha(0)
                                         .withEndAction(new Runnable() {
                                             @Override
@@ -66,16 +71,20 @@ public class NotesListActivity extends AppCompatActivity {
                                                 listItems.remove(item);
                                                 adapter.notifyDataSetChanged();
                                                 view.setAlpha(1);
+                                                Notes.mapNotes.remove(item);
                                             }
                                         });
                                 break;
+
+                             case DialogInterface.BUTTON_NEGATIVE:
+                                 break;
                         }
                     }
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(NotesListActivity.this);
-                builder.setMessage("Are you sure?").setNeutralButton("Open", dialogClickListener)
-                        .setNegativeButton("Delete", dialogClickListener).show();
+                builder.setMessage("What do you want ?").setPositiveButton("Open", dialogClickListener)
+                        .setNeutralButton("Delete", dialogClickListener).setNegativeButton("Back", dialogClickListener).show();
 
 
             }
@@ -88,12 +97,6 @@ public class NotesListActivity extends AppCompatActivity {
         Intent myIntent = new Intent(view.getContext(), EditNoteActivity.class);
         startActivityForResult(myIntent, 0);
 
-        if (!Notes.mapNotes.isEmpty()){
-            Set<String> set = Notes.mapNotes.keySet();
-            listItems =  new ArrayList<>(set);
-        }
-
-        adapter.notifyDataSetChanged();
     }
 
 }
