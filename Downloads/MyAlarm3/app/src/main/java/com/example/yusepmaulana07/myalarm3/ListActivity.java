@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends android.app.ListActivity {
 
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
     ArrayList<String> listItems=new ArrayList<String>();
@@ -22,18 +22,27 @@ public class ListActivity extends AppCompatActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.listview_page);
-        ListView listView = (ListView) findViewById(R.id.list1);
-        listView.setAdapter(adapter);
+//        ListView listView = (ListView) findViewById(R.id.list1);
+//        listView.setAdapter(adapter);
+//        final StableArrayAdapter adapter = new StableArrayAdapter(this,
+//                android.R.layout.simple_list_item_1, list);
+//        listview.setAdapter(adapter);
 
-//        adapter=new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1,
-//                listItems);
-//        setListAdapter(adapter);
+        adapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                listItems);
+        setListAdapter(adapter);
     }
 
     //METHOD WHICH WILL HANDLE DYNAMIC INSERTION
     public void addItems(View v) {
         listItems.add("Clicked : "+clickCounter++);
         adapter.notifyDataSetChanged();
+    }
+
+    public void deleteItems(View v){
+        listItems.clear();
+        adapter.notifyDataSetChanged();
+        clickCounter =0;
     }
 }

@@ -6,16 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/addBtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:text="ADD"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:onClick="addItems"
+            android:text="ADD"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:onClick="deleteItems"
+            android:text="DELETE" />
+
+    </LinearLayout>
 
     <ListView
-        android:id="@+id/list1"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
