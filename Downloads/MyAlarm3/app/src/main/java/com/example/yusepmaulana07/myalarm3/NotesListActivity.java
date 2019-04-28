@@ -1,6 +1,7 @@
 package com.example.yusepmaulana07.myalarm3;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.yusepmaulana07.myalarm3.model.Notes;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class NotesListActivity extends AppCompatActivity {
 
@@ -29,6 +35,10 @@ public class NotesListActivity extends AppCompatActivity {
 //            }
 //
 //        });
+        if (!Notes.mapNotes.isEmpty()){
+            Set<String> set = Notes.mapNotes.keySet();
+            listItems =  new ArrayList<>(set);
+        }
 
         ListView listView = (ListView) findViewById(R.id.listNotes);
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
@@ -73,7 +83,16 @@ public class NotesListActivity extends AppCompatActivity {
     }
 
     public void addNote(View view){
-        listItems.add("addddd");
+//        listItems.add("addddd");
+//        adapter.notifyDataSetChanged();
+        Intent myIntent = new Intent(view.getContext(), EditNoteActivity.class);
+        startActivityForResult(myIntent, 0);
+
+        if (!Notes.mapNotes.isEmpty()){
+            Set<String> set = Notes.mapNotes.keySet();
+            listItems =  new ArrayList<>(set);
+        }
+
         adapter.notifyDataSetChanged();
     }
 

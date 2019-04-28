@@ -55,5 +55,5 @@
      android:layout_alignParentTop="true"
      android:text="Next Page >" />
 
-
+<!--https://proandroiddev.com/android-developer-beginner-faq-2-gravity-vs-layout-gravity-3c461bdeae12-->
 </RelativeLayout>
